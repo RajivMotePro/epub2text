@@ -1,0 +1,11 @@
+HtmlStripper:
+    In: HTML text
+    Out: Text stripped of HTML
+
+ChapterConverter:
+    In: chapter path and filename
+    Out: path and filename of stripped text file
+
+EpubConverter:
+    In: epub path and filename
+    Out: zip path and filename of stripped text chapters
