@@ -31,7 +31,15 @@ class EpubConverter:
             chapter_text_file = self.chapter_converter.convert_chapter(chapter_file)
             print("Converted: " + chapter_text_file)
         #Zip text files
-        #Return zip file
+        with zipfile.ZipFile(in_filename + ".zip", 'w', zipfile.ZIP_DEFLATED) as text_zip:
+            print("Creating: " + text_zip.filename)
+            text_files = glob.glob(chapter_dir + "/*.txt")
+            for text_file in text_files:
+                path, arcname = os.path.split(text_file)
+                print("Adding: " + arcname)
+                text_zip.write(text_file, arcname)
+            #Return zip file
+            return text_zip
 
 def main():
     # file_name = "C:/Users/rajiv_000/Documents/Books/Wheel Of Time/NewSpring/OEBPS/9781429961530_ch01.html"
