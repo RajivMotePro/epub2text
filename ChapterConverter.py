@@ -1,13 +1,15 @@
 from HtmlStripper import MLStripper
 import sys
-import os.path
+import os
 
 class ChapterConverter:
     stripper = MLStripper()
+    out_dir = "./"
 
     def convert_chapter(self, in_filename):
+        self.stripper.fed = []
         try:
-            out_filename = in_filename + ".txt"
+            out_filename = os.path.join(self.out_dir, os.path.split(in_filename)[1] + ".txt")
             with open(in_filename, "r") as in_file:
                 content = in_file.read()
                 self.stripper.feed(content)
