@@ -16,7 +16,6 @@ class MLStripper(HTMLParser):
         return "".join(self.fed)
 
 def main():
-    #file_name = "C:/Users/rajiv_000/Documents/Books/Wheel Of Time/NewSpring/OEBPS/9781429961530_ch01.html"
     if len(sys.argv) > 1:
         file_name = sys.argv[1]
         try:
