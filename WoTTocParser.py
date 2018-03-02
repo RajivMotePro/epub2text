@@ -15,7 +15,9 @@ class WoTTocParser:
                     print(bookName)
                     for chapter in book.findall("{http://www.daisy.org/z3986/2005/ncx/}navPoint"):
                         chapterName= chapter[0][0].text
-                        if chapterName.startswith("Prologue") | chapterName.startswith("Epilogue") | chapterName[:1].isdigit():
+                        if (chapterName.startswith("Prologue")
+                                | chapterName.startswith("Epilogue")
+                                | chapterName[:1].isdigit()):
                             source = chapter[1].get("src")
                             source_file_name = os.path.join(base_dir_name, source)
                             print(chapterName + '\t' + source_file_name)
