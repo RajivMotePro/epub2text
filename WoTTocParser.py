@@ -1,3 +1,4 @@
+from HtmlStripper import MLStripper
 import sys
 import os
 import xml.etree.ElementTree
@@ -16,7 +17,14 @@ class WoTTocParser:
                         chapterName= chapter[0][0].text
                         if chapterName.startswith("Prologue") | chapterName.startswith("Epilogue") | chapterName[:1].isdigit():
                             source = chapter[1].get("src")
-                            print(chapterName + '\t' + source)
+                            source_file_name = os.path.join(base_dir_name, source)
+                            print(chapterName + '\t' + source_file_name)
+                            with open(source_file_name, "r") as source_file:
+                                stripper = MLStripper()
+                                chapter_text = source_file.read()
+                                stripper.feed(chapter_text)
+                                chapter_text = stripper.get_data()
+                                print(chapter_text)
 
 def main():
     if len(sys.argv) > 1:
