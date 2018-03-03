@@ -20,7 +20,7 @@ class WoTTocParser:
                             if (chapterName.startswith("Prologue")
                                     | chapterName.startswith("Epilogue")
                                     | chapterName[:1].isdigit()):
-                                source = chapter[1].get("src")
+                                source = chapter[1].get("src").split("#")[0]
                                 source_file_name = os.path.join(base_dir_name, source)
                                 print(chapterName + '\t' + source_file_name)
                                 with open(source_file_name, "r", encoding="utf8") as source_file:
